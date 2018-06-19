@@ -68,6 +68,14 @@
             color:#666;
         }
     </style>
+    <script>
+        function go() {
+            var offset = window.pageYOffset;
+            var header = document.getElementById("header_octagon");
+            var logo = document.getElementById("logo");
+            header.style.backgroundPosition = "0px " + offset / 2 + "px";
+        }
+    </script>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - Betsy</title>
