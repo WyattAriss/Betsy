@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Betsy.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Rankings</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Money)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @if (item.Id == @ViewData["User"].ToString()) {
+                        <strong>@Html.DisplayFor(modelItem => item.UserName)</strong>
+                    }
+                    else {
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Money)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

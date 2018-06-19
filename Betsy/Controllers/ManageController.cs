@@ -58,6 +58,7 @@ namespace Betsy.Controllers
             var model = new IndexViewModel
             {
                 Username = user.UserName,
+                Money = user.Money,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsEmailConfirmed = user.EmailConfirmed,

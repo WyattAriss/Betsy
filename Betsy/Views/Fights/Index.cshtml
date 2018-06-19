@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Betsy.Models.Fight>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Upcoming Fights</h2>
+
+@if (User.IsInRole("Admin")) {
+    <p>
+        <a asp-action="Create">Add Fight</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fighter1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odds1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fighter2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odds2)
+            </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClosingDate)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @if (item.Winner == 1) {
+                <td>
+                    <strong>
+                        @Html.DisplayFor(modelItem => item.Fighter1)
+                    </strong>
+                </td>
+            } else {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fighter1)
+                </td>
+            }
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Odds1)
+            </td>
+            @if (item.Winner == 2) {
+                <td>
+                    <strong>
+                        @Html.DisplayFor(modelItem => item.Fighter2)
+                    </strong>
+                </td>
+            } else {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fighter2)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Odds2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Event)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosingDate)
+            </td>
+            @if (User.IsInRole("Admin")) {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.FightId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.FightId">Delete</a> |
+                    @if (item.Winner == null) {
+                        <a asp-action="DeclareWinner" asp-route-id="@item.FightId">Declare Winner</a>
+                    }
+                </td>
+             }
+            <td>
+                <a asp-action="PlaceBet" asp-route-id="@item.FightId">Place Bet!</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

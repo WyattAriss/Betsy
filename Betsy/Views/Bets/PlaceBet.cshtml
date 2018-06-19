@@ -1,0 +1,74 @@
+﻿@model Betsy.Models.Bet
+
+@{
+    ViewData["Title"] = "Place Bet";
+}
+
+<h2>PlaceBet</h2>
+
+<h4>Bet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Bets" asp-action="ConfirmBet">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FightObj.Fighter1" class="control-label"></label>
+                <input readonly="readonly" asp-for="FightObj.Fighter1" class="form-control" />
+                <span asp-validation-for="FightObj.Fighter1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FightObj.Odds1" class="control-label"></label>
+                <input readonly="readonly" asp-for="FightObj.Odds1" class="form-control" />
+                <span asp-validation-for="FightObj.Odds1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FightObj.Fighter2" class="control-label"></label>
+                <input readonly="readonly" asp-for="FightObj.Fighter2" class="form-control" />
+                <span asp-validation-for="FightObj.Fighter2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FightObj.Odds2" class="control-label"></label>
+                <input readonly="readonly" asp-for="FightObj.Odds2" class="form-control" />
+                <span asp-validation-for="FightObj.Odds2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FightObj.Event" class="control-label"></label>
+                <input readonly="readonly" asp-for="FightObj.Event" class="form-control" />
+                <span asp-validation-for="FightObj.Event" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FightObj.ClosingDate" class="control-label"></label>
+                <input readonly="readonly" asp-for="FightObj.ClosingDate" class="form-control" />
+                <span asp-validation-for="FightObj.ClosingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Selection</label>
+                @Html.DropDownList("Fighter", new List<SelectListItem>
+                {
+                    new SelectListItem {Text = Model.FightObj.Fighter1, Value="1"  },
+                    new SelectListItem {Text = Model.FightObj.Fighter2, Value="2"  }
+                }, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="BetAmount" class="control-label"></label>
+                <input asp-for="BetAmount" class="form-control" />
+                <span asp-validation-for="BetAmount" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="User" />
+            <input type="hidden" asp-for="Fight" />
+            <input type="hidden" asp-for="FightObj" />
+            <div class="form-group">
+                <input type="submit" value="View Potential Payout" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

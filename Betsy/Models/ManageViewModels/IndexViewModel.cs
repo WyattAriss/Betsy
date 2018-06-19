@@ -10,6 +10,8 @@ namespace Betsy.Models.ManageViewModels
     {
         public string Username { get; set; }
 
+        public double Money { get; set; }
+
         public bool IsEmailConfirmed { get; set; }
 
         [Required]

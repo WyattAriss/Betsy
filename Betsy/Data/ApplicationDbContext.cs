@@ -15,6 +15,9 @@ namespace Betsy.Data
         {
         }
 
+        public DbSet<Fight> Fight { get; set; }
+        public DbSet<Bet> Bet { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -22,5 +25,7 @@ namespace Betsy.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<Betsy.Models.ApplicationUser> ApplicationUser { get; set; }
     }
 }

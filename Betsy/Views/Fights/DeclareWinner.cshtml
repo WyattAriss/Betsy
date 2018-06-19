@@ -1,0 +1,55 @@
+﻿@model Fight
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Declare the winner and close out the bets</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DeclareWinner">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="FightId" />
+            <div class="form-group">
+                <label asp-for="Fighter1" class="control-label"></label>
+                <input readonly="readonly" asp-for="Fighter1" class="form-control" />
+                <span asp-validation-for="Fighter1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <strong>VS</strong>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fighter2" class="control-label"></label>
+                <input readonly="readonly" asp-for="Fighter2" class="form-control" />
+                <span asp-validation-for="Fighter2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Event" class="control-label"></label>
+                <input readonly="readonly" asp-for="Event" class="form-control" />
+                <span asp-validation-for="Event" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Selection</label>
+                @Html.DropDownList("Winner", new List<SelectListItem>
+                 {
+                    new SelectListItem {Text = Model.Fighter1, Value="1"  },
+                    new SelectListItem {Text = Model.Fighter2, Value="2"  }
+                 }, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,58 @@
+﻿@model Betsy.Models.Bet
+
+@{
+    ViewData["Title"] = "Confirm Bet";
+}
+
+<h2>Confirm Bet</h2>
+
+<h4>Bet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Bets" asp-action="InsertBet">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BetId" />
+            <div class="form-group">
+                <label asp-for="Pick" class="control-label"></label>
+                <input readonly="readonly" asp-for="Pick" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Odds" class="control-label"></label>
+                <output>@Model.Odds</output>
+            </div>
+            <div class="form-group">
+                <label asp-for="BetAmount" class="control-label"></label>
+                <output>$@Model.BetAmount</output>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReturnAmount" class="control-label"></label>
+                <output>$@Model.ReturnAmount</output>
+            </div>
+            @if (Model.ClosingDate != null) {
+                <div class="form-group">
+                    <label asp-for="ClosingDate" class="control-label"></label>
+                    <input readonly="readonly" asp-for="ClosingDate" class="form-control" />
+                    <span asp-validation-for="ClosingDate" class="text-danger"></span>
+                </div>
+            }
+            
+            <input type="hidden" asp-for="Odds" />
+            <input type="hidden" asp-for="BetAmount" />
+            <input type="hidden" asp-for="User" />
+            <input type="hidden" asp-for="Fight" />
+            <input type="hidden" asp-for="FightObj" />
+            <div class="form-group">
+                <input type="submit" value="Place Bet" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Fights" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -31,8 +31,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Member")) {
+                        <li><a asp-area="" asp-controller="Home" asp-action="Rankings">Rankings</a></li>
+                        <li><a asp-area="" asp-controller="Fights" asp-action="Index">Fights</a></li>
+                        <li><a asp-area="" asp-controller="Bets" asp-action="Index">My Bets</a></li>
+                    }
+                    @if (User.IsInRole("Admin")) {
+                        <li><a asp-area="" asp-controller="Bets" asp-action="CloseOut">Close out bets</a></li>
+                    }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -40,10 +46,6 @@
     </nav>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - Betsy</p>
-        </footer>
     </div>
 
     <environment include="Development">

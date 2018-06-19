@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Betsy.Models.Bet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>My Bets!</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FightObj.Fighter1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FightObj.Fighter2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FightObj.Event)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Odds)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReturnAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClosingDate)
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        @if (item.Open) {
+            <td>
+                @Html.DisplayFor(modelItem => item.FightObj.Fighter1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FightObj.Fighter2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FightObj.Event)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Odds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosingDate)
+            </td>
+        }
+        else {
+            <td>
+                <i>@Html.DisplayFor(modelItem => item.FightObj.Fighter1)</i>
+            </td>
+            <td>
+                <i>@Html.DisplayFor(modelItem => item.FightObj.Fighter2)</i>
+            </td>
+            <td>
+                <i>@Html.DisplayFor(modelItem => item.FightObj.Event)</i>
+            </td>
+            <td>
+                <i>@Html.DisplayFor(modelItem => item.Odds)</i>
+            </td>
+            <td>
+                <i>@Html.DisplayFor(modelItem => item.ReturnAmount)</i>
+            </td>
+            <td>
+                <i>@Html.DisplayFor(modelItem => item.ClosingDate)</i>
+            </td>
+        }
+        @if (User.IsInRole("Admin")) {
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BetId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BetId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BetId">Delete</a>
+            </td>
+        }
+    </tr>
+}
+    </tbody>
+</table>
