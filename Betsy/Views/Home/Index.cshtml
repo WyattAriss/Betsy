@@ -67,6 +67,14 @@
             cursor:pointer;
             color:#666;
         }
+        /* Style the video: 100% width and height to cover the entire window */
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+        }
     </style>
     <script>
         function go() {
@@ -101,7 +109,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Betsy</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index"><img class="betsy_link" src="~/Images/betsyRed.png" /></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -122,11 +130,14 @@
     <div>
 
         <body class="body2" onscroll="go()" style="background-color: black">
-            <header id="header_octagon">
-                <div id="logo">
-                    Betsy
-                </div>
-            </header>
+        <header id="header_octagon">
+            @*<video autoplay muted loop id="myVideo">
+                <source src="~/Images/ufcIntro.mp4" type="video/mp4">
+            </video>*@
+            <div id="logo">
+                <img src="~/Images/betsyBlack.png" />
+            </div>
+        </header>
             <center>
                 <div id="content_anderson">
                     @if (!User.IsInRole("Member") && !User.IsInRole("Admin")) {

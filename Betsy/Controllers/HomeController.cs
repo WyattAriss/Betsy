@@ -44,7 +44,7 @@ namespace Betsy.Controllers
 
         public IActionResult Rankings() {
 
-            var users = _context.ApplicationUser.OrderBy(b => b.Money);
+            var users = _context.ApplicationUser.OrderByDescending(b => b.Money);
             ViewData["User"] = _userManager.GetUserId(HttpContext.User);
 
             return View(users);

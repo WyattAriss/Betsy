@@ -58,7 +58,7 @@ namespace Betsy.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FightId,Fighter1,Fighter2,Event,Odds,ClosingDate")] Fight fight)
+        public async Task<IActionResult> Create([Bind("FightId,Fighter1,Fighter2,Event,Odds1,Odds2,ClosingDate")] Fight fight)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace Betsy.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FightId,Fighter1,Fighter2,Event,Odds,ClosingDate")] Fight fight)
+        public async Task<IActionResult> Edit(int id, [Bind("FightId,Fighter1,Fighter2,Event,Odds1,Odds2,ClosingDate")] Fight fight)
         {
             if (id != fight.FightId)
             {
