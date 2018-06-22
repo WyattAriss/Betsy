@@ -83,6 +83,11 @@
             var logo = document.getElementById("logo");
             header.style.backgroundPosition = "0px " + offset / 2 + "px";
         }
+
+        setTimeout(function() {
+                $("#logo").fadeOut(1000);
+            },
+            4000);
     </script>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -131,11 +136,11 @@
 
         <body class="body2" onscroll="go()" style="background-color: black">
         <header id="header_octagon">
-            @*<video autoplay muted loop id="myVideo">
+            <video autoplay muted loop id="myVideo">
                 <source src="~/Images/ufcIntro.mp4" type="video/mp4">
-            </video>*@
+            </video>
             <div id="logo">
-                <img src="~/Images/betsyBlack.png" />
+                <img src="~/Images/betsyWhite.png" />
             </div>
         </header>
             <center>

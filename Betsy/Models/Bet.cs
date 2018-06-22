@@ -18,6 +18,7 @@ namespace Betsy.Models
         public string Pick { get; set; }
 
         [Required]
+        [Range(1, Double.MaxValue, ErrorMessage = "Bet amount must be a positive number")]
         public double BetAmount { get; set; }
 
         public double ReturnAmount { get; set; }
